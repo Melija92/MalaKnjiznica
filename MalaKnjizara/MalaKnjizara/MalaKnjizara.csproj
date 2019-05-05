@@ -245,6 +245,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Slike\autor.jpg" />
+    <Content Include="Slike\facebook-login.png" />
+    <Content Include="Slike\facebook-sign-in-button.png" />
     <Content Include="Slike\knjiga.jpg" />
     <Content Include="Slike\knjiznica.jpg" />
     <Content Include="Slike\login-google.png" />
@@ -297,6 +299,16 @@
     <Content Include="Views\Polica\Edit.cshtml" />
     <Content Include="Views\Polica\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Knjiga\Create.cshtml" />
+    <Content Include="Views\Knjiga\Delete.cshtml" />
+    <Content Include="Views\Knjiga\Details.cshtml" />
+    <Content Include="Views\Knjiga\Edit.cshtml" />
+    <Content Include="Views\Knjiga\Index.cshtml" />
+    <Content Include="Views\Nakladnik\Create.cshtml" />
+    <Content Include="Views\Nakladnik\Delete.cshtml" />
+    <Content Include="Views\Nakladnik\Details.cshtml" />
+    <Content Include="Views\Nakladnik\Edit.cshtml" />
+    <Content Include="Views\Nakladnik\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

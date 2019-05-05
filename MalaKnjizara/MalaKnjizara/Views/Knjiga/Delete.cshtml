@@ -1,0 +1,63 @@
+﻿@model MalaKnjizara.Models.Knjiga
+
+@{
+    ViewBag.Title = "Brisanje knjige";
+}
+
+<h3>Brisanje knjige</h3>
+
+<h4>Jesi li siguran želiš li izbrisati knjigu?</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nakladnik
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nakladnik.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+
+        <dt>
+            Količina
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kolicina)
+        </dd>
+
+        <dt>
+            Broj stranica
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojStranica)
+        </dd>
+
+        <dt>
+            Jezik pisanja
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JezikPisanja)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Izbriši" class="btn btn-default" /> |
+            @Html.ActionLink("Natrag na listu", "Index")
+        </div>
+    }
+</div>

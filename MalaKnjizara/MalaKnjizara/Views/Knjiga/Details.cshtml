@@ -1,0 +1,64 @@
+﻿@model MalaKnjizara.Models.Knjiga
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+<div>
+    <h4>Knjiga</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nakladnik.OIB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nakladnik.OIB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Polica.Oznaka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Polica.Oznaka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kolicina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kolicina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrojStranica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrojStranica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JezikPisanja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JezikPisanja)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.KnjigaID }) |
+    @Html.ActionLink("Natrag na listu", "Index")
+</p>

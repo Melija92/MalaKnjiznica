@@ -54,9 +54,9 @@ namespace MalaKnjizara
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "355270345096280",
+               appSecret: "af8e9833bed8a0b2ade5f0dc7e2651d9");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
