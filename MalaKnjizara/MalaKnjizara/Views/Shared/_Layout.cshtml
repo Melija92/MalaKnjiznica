@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Početna stranica", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-header">
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 18px;" ;>Knjige<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Pregled knjiga", "Index", "Knjiga", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            <li>@Html.ActionLink("Dodaj knjigu", "Create", "Knjiga", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 18px;" ;>Police<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Pregled polica", "Index", "Polica", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            <li>@Html.ActionLink("Dodaj policu", "Create", "Polica", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 18px;" ;>Autori<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Pregled autora", "Index", "Autor", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            <li>@Html.ActionLink("Dodaj autora", "Create", "Autor", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 18px;" ;>Autorstva<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Pregled autorstva", "Index", "Autorstvo", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            <li>@Html.ActionLink("Dodaj autorstvo", "Create", "Autorstvo", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 18px;" ;>Nakladnici<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Pregled nakladnika", "Index", "Nakladnik", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            <li>@Html.ActionLink("Dodaj nakladnika", "Create", "Nakladnik", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        </ul>
+
+                    </li>
+                    <span style="padding-left: 180px;">@Html.Partial("_LoginPartial")</span>
+                </ul>
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer style="text-align: center;">
+            <p>@DateTime.Now.Year - Sučić Domagoj</p>
+            <p>Predmet - Napredno Web programiranje</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

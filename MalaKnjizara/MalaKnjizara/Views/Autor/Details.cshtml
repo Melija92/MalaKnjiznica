@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MalaKnjizara.ViewModel.KnjigaViewModel>
+
+@{
+    ViewBag.Title = "Detalji autora";
+}
+
+<div>
+    <h4>Autor - @ViewBag.NazivAutora</h4>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Naziv knjige
+            </th>
+            <th>
+                Nakladnik
+            </th>
+            <th>
+                Količina
+            </th>
+            <th>
+                Broj stranica
+            </th>
+            <th>
+                Jezik pisanja
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazivNakladnika)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kolicina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojStranica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JezikPisanja)
+            </td>
+        </tr>
+        }
+
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Natrag na listu", "Index")
+</p>

@@ -1,0 +1,40 @@
+﻿@model MalaKnjizara.Models.Autorstvo
+
+@{
+    ViewBag.Title = "Detalji autorstva";
+}
+
+<div>
+    <h4>Autorstvo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Autor.OIB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autor.OIB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Knjiga.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Knjiga.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UdioAutorstva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UdioAutorstva)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.AutorstvoID }) |
+    @Html.ActionLink("Natrag na listu", "Index")
+</p>

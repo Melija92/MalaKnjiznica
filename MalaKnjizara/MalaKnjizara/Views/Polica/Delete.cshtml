@@ -1,0 +1,31 @@
+﻿@model MalaKnjizara.Models.Polica
+
+@{
+    ViewBag.Title = "Brisanje police";
+}
+
+<h3>Brisanje police</h3>
+
+<h4>Jesi li siguran da želiš izbrisati policu?</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Oznaka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Oznaka)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Izbriši" class="btn btn-default" /> |
+            @Html.ActionLink("Natrag na listu", "Index")
+        </div>
+    }
+</div>
