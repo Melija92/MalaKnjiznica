@@ -16,11 +16,12 @@ namespace MalaKnjizara.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [Authorize(Roles = "User, Admin, SuperAdmin")]
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NazivSortParm = String.IsNullOrEmpty(sortOrder) ? "oznaka_desc" : "";
-
+            
             if (searchString != null)
                 page = 1;
             else
@@ -65,6 +66,7 @@ namespace MalaKnjizara.Controllers
             return View(detalji);
         }
 
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Create()
         {
             return View();
@@ -84,6 +86,7 @@ namespace MalaKnjizara.Controllers
             return View(polica);
         }
 
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -111,6 +114,7 @@ namespace MalaKnjizara.Controllers
             return View(polica);
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

@@ -14,7 +14,8 @@ namespace MalaKnjizara.Controllers
     public class AutorstvoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
+        [Authorize(Roles = "User, Admin, SuperAdmin")]
         // GET: Autorstvo
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
@@ -78,7 +79,7 @@ namespace MalaKnjizara.Controllers
             return View(autorstvo);
         }
 
-        // GET: Autorstvo/Create
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Create()
         {
             ViewBag.AutorID = new SelectList(db.Autor, "AutorID", "OIB");
@@ -105,7 +106,7 @@ namespace MalaKnjizara.Controllers
             return View(autorstvo);
         }
 
-        // GET: Autorstvo/Edit/5
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -140,7 +141,7 @@ namespace MalaKnjizara.Controllers
             return View(autorstvo);
         }
 
-        // GET: Autorstvo/Delete/5
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

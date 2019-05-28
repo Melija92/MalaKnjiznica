@@ -75,7 +75,7 @@ namespace MalaKnjizara.Controllers
                 if (knjiga == null)
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound,
-                        "Employee with Id = " + id.ToString() + " not found to delete");
+                        "Knjiga s ID-om " + id.ToString() + " nije pronađena");
                 }
 
                 db.Knjiga.Remove(knjiga);
@@ -110,6 +110,7 @@ namespace MalaKnjizara.Controllers
                     dbKnjiga.JezikPisanja = knjiga.JezikPisanja;
                     dbKnjiga.Naziv = knjiga.Naziv;
                     dbKnjiga.Kolicina = knjiga.Kolicina;
+                    dbKnjiga.Cijena = knjiga.Cijena;
                     dbKnjiga.PolicaID = knjiga.PolicaID;
 
                     db.SaveChanges();

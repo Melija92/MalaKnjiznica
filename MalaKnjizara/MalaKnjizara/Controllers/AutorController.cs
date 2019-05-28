@@ -16,6 +16,7 @@ namespace MalaKnjizara.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [Authorize(Roles = "User, Admin, SuperAdmin")]
         // GET: Autor
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
@@ -92,7 +93,7 @@ namespace MalaKnjizara.Controllers
             return View(knjige);
         }
 
-
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Create()
         {
             return View();
@@ -112,7 +113,7 @@ namespace MalaKnjizara.Controllers
             return View(autor);
         }
 
-
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -140,6 +141,7 @@ namespace MalaKnjizara.Controllers
             return View(autor);
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

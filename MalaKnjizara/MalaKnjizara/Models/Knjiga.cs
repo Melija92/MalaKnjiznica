@@ -18,6 +18,8 @@ namespace MalaKnjizara.Models
         public int Kolicina { get; set; }
         [Required(ErrorMessage = "Broj stranica obvezan je za unos!")]
         public int BrojStranica { get; set; }
+        [Required(ErrorMessage = "Cijena je obvezna za unos!")]
+        public decimal Cijena { get; set; }
         public string JezikPisanja { get; set; }
         public int NakladnikID { get; set; }
         public virtual Nakladnik Nakladnik { get; set; }

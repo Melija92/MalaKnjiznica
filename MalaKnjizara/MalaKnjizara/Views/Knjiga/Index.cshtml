@@ -44,35 +44,41 @@
         <th>
             @Html.ActionLink("Jezik pisanja", "Index", new { sortOrder = ViewBag.JezikPisanjaSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
+        <th>
+            @Html.ActionLink("Cijena (EUR)", "Index", new { sortOrder = ViewBag.CijenaSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Naziv)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nakladnik.Naziv)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Polica.Oznaka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kolicina)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BrojStranica)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JezikPisanja)
-            </td>
-            <td>
-                @Html.ActionLink("Uredi", "Edit", new { id = item.KnjigaID }) |
-                @Html.ActionLink("Izbrši", "Delete", new { id = item.KnjigaID })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nakladnik.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Polica.Oznaka)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kolicina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrojStranica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JezikPisanja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cijena)
+        </td>
+        <td>
+            @Html.ActionLink("Uredi", "Edit", new { id = item.KnjigaID }) |
+            @Html.ActionLink("Izbrši", "Delete", new { id = item.KnjigaID })
+        </td>
+    </tr>
     }
 
 </table>

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MalaKnjizara.Models;
+using Newtonsoft.Json;
 using PagedList;
 
 namespace MalaKnjizara.Controllers
@@ -15,6 +16,7 @@ namespace MalaKnjizara.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [Authorize(Roles = "User, Admin, SuperAdmin")]
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -24,7 +26,8 @@ namespace MalaKnjizara.Controllers
             ViewBag.KolicinaSortParm = sortOrder == "kolicina_asc" ? "kolicina_desc" : "kolicina_asc";
             ViewBag.BrojStranicaSortParm = sortOrder == "brojStranica_asc" ? "brojStranica_desc" : "brojStranica_asc";
             ViewBag.JezikPisanjaSortParm = sortOrder == "jezikPisanja_asc" ? "jezikPisanja_desc" : "jezikPisanja_asc";
-            
+            ViewBag.CijenaSortParm = sortOrder == "cijena_asc" ? "cijena_desc" : "cijena_asc";
+
             if (searchString != null)
                 page = 1;
             else
@@ -35,8 +38,20 @@ namespace MalaKnjizara.Controllers
             var knjige = db.Knjiga.Include(k => k.Nakladnik).Include(k => k.Polica);
 
             if (!String.IsNullOrEmpty(searchString))
-                knjige = knjige.Where(s => s.Naziv.Contains(searchString) || 
+                knjige = knjige.Where(s => s.Naziv.Contains(searchString) ||
                                            s.Polica.Oznaka.Contains(searchString));
+
+            Tecaj tecajevi = new Tecaj();
+            using (var client = new WebClient())
+            {
+                var response = client.DownloadString(@"https://api.ratesapi.io/api/latest");
+                tecajevi = JsonConvert.DeserializeObject<Tecaj>(response, new JsonSerializerSettings());
+            }
+
+            foreach (var knjiga in knjige)
+            {
+                knjiga.Cijena = knjiga.Cijena / tecajevi.Rates.HRK;
+            }
 
             switch (sortOrder)
             {
@@ -73,6 +88,12 @@ namespace MalaKnjizara.Controllers
                 case "oznaka_asc":
                     knjige = knjige.OrderBy(s => s.Polica.Oznaka);
                     break;
+                case "cijena_desc":
+                    knjige = knjige.OrderByDescending(s => s.Cijena);
+                    break;
+                case "cijena_asc":
+                    knjige = knjige.OrderBy(s => s.Cijena);
+                    break;
                 default:
                     knjige = knjige.OrderBy(s => s.Naziv);
                     break;
@@ -96,6 +117,7 @@ namespace MalaKnjizara.Controllers
             }
             return View(knjiga);
         }
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Create()
         {
             ViewBag.NakladnikID = new SelectList(db.Nakladnik, "NakladnikID", "Naziv");
@@ -105,7 +127,7 @@ namespace MalaKnjizara.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "KnjigaID,Naziv,Kolicina,BrojStranica,JezikPisanja,NakladnikID,PolicaID")] Knjiga knjiga)
+        public ActionResult Create([Bind(Include = "KnjigaID,Naziv,Kolicina,BrojStranica,JezikPisanja,Cijena,NakladnikID,PolicaID")] Knjiga knjiga)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +140,7 @@ namespace MalaKnjizara.Controllers
             ViewBag.PolicaID = new SelectList(db.Polica, "PolicaID", "Oznaka", knjiga.PolicaID);
             return View(knjiga);
         }
-
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -137,7 +159,7 @@ namespace MalaKnjizara.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "KnjigaID,Naziv,Kolicina,BrojStranica,JezikPisanja,NakladnikID,PolicaID")] Knjiga knjiga)
+        public ActionResult Edit([Bind(Include = "KnjigaID,Naziv,Kolicina,BrojStranica,JezikPisanja,Cijena,NakladnikID,PolicaID")] Knjiga knjiga)
         {
             if (ModelState.IsValid)
             {
@@ -150,6 +172,7 @@ namespace MalaKnjizara.Controllers
             return View(knjiga);
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

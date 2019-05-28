@@ -12,10 +12,12 @@ using PagedList;
 
 namespace MalaKnjizara.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class NakladnikController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [Authorize(Roles = "User, Admin, SuperAdmin")]
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -96,6 +98,7 @@ namespace MalaKnjizara.Controllers
             return View(detalji);
         }
 
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Create()
         {
             return View();
@@ -115,6 +118,7 @@ namespace MalaKnjizara.Controllers
             return View(nakladnik);
         }
 
+        [Authorize(Roles = "Admin, SuperAdmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -142,6 +146,7 @@ namespace MalaKnjizara.Controllers
             return View(nakladnik);
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
