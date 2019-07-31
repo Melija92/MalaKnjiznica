@@ -7,7 +7,7 @@ using System.Web;
 
 namespace MalaKnjizara.Models
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public DbSet<Autor> Autor { get; set; }
         public DbSet<Autorstvo> Autorstvo { get; set; }

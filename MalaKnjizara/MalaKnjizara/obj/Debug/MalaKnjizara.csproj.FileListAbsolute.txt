@@ -109,8 +109,6 @@ D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\obj\De
 D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\obj\Debug\MalaKnjizara.csproj.CopyComplete
 D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\obj\Debug\MalaKnjizara.dll
 D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\obj\Debug\MalaKnjizara.pdb
-D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\obj\Debug\MalaKnjizara.Migrations.InitialCreate.resources
-D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\obj\Debug\MalaKnjizara.csproj.GenerateResource.cache
 D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\bin\PagedList.dll
 D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\bin\PagedList.Mvc.dll
 D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\bin\System.Web.Cors.dll
@@ -118,3 +116,5 @@ D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\bin\Sy
 D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\bin\PagedList.xml
 D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\bin\PagedList.Mvc.xml
 D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\bin\System.Web.Http.Cors.xml
+D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\obj\Debug\MalaKnjizara.Migrations.InitialMigrations.resources
+D:\Lokalno programiranje - Csharp\MalaKnjiznica\MalaKnjizara\MalaKnjizara\obj\Debug\MalaKnjizara.csproj.GenerateResource.cache
