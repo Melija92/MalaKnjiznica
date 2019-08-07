@@ -62,7 +62,7 @@ namespace UnitTest
             _controller.Request = new HttpRequestMessage() { Properties = { { HttpPropertyKeys.HttpConfigurationKey, new HttpConfiguration() } } };
             var rezultat = _controller.GetKnjiga(50);
 
-            Assert.AreEqual(HttpStatusCode.NotFound, rezultat.StatusCode, "");
+            Assert.AreEqual(HttpStatusCode.NotFound, rezultat.StatusCode);
         }
 
         [TestMethod]
@@ -72,15 +72,31 @@ namespace UnitTest
             WebApiConfig.Register(httpConfiguration);
             var httpRouteData = new HttpRouteData(httpConfiguration.Routes["DefaultApi"], new HttpRouteValueDictionary { { "controller", "KnjigaApi" } });
 
-            _controller.Request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:44314/api/PostKnjiga/")
+            _controller.Request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:44314/api/PostKnjiga")
             {
                 Properties = { { HttpPropertyKeys.HttpConfigurationKey, httpConfiguration }, { HttpPropertyKeys.HttpRouteDataKey, httpRouteData } }
             };
-
             var rezultat = _controller.Post(knjiga);
 
             Assert.AreEqual(HttpStatusCode.Created, rezultat.StatusCode);
-            Assert.AreEqual(string.Format("https://localhost:44314/api/KnjigaApi/{0}", knjiga.KnjigaID), rezultat.Headers.Location.ToString());
+            Assert.AreEqual(string.Format("https://localhost:44314/api/GetKnjiga/{0}", knjiga.KnjigaID), rezultat.Headers.Location.ToString());
+            Assert.AreEqual(knjiga.Naziv, rezultat.Content.ReadAsAsync<Knjiga>().Result.Naziv);
+        }
+
+        [TestMethod]
+        public void DodavanjeNepostojeceKnjige()
+        {
+            var httpConfiguration = new HttpConfiguration();
+            WebApiConfig.Register(httpConfiguration);
+            var httpRouteData = new HttpRouteData(httpConfiguration.Routes["DefaultApi"], new HttpRouteValueDictionary { { "controller", "KnjigaApi" } });
+
+            _controller.Request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:44314/api/PostKnjiga")
+            {
+                Properties = { { HttpPropertyKeys.HttpConfigurationKey, httpConfiguration }, { HttpPropertyKeys.HttpRouteDataKey, httpRouteData } }
+            };
+            var rezultat = _controller.Post(null);
+
+            Assert.AreEqual(HttpStatusCode.BadRequest, rezultat.StatusCode);
         }
     }
 }

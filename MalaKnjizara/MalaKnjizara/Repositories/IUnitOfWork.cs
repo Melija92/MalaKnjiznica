@@ -9,6 +9,8 @@ namespace MalaKnjizara.Repositories
     public interface IUnitOfWork
     {
         IKnjigaRepository Knjige { get; }
+        INakladnikRepository Nakladnici { get; }
+
         void Complete();
     }
 }

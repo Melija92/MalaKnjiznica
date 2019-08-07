@@ -10,5 +10,6 @@ namespace MalaKnjizara.Models
     public interface IApplicationDbContext
     {
         DbSet<Knjiga> Knjiga { get; set; }
+        DbSet<Nakladnik> Nakladnik { get; set; }
     }
 }
